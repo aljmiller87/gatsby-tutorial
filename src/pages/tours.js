@@ -1,6 +1,7 @@
 import React from "react";
 import Layout from "../components/Layout";
 import StyledHero from "../components/StyledHero";
+import Tours from "../components/Tours/Tours";
 import { graphql } from "gatsby";
 
 const tours = props => {
@@ -10,6 +11,7 @@ const tours = props => {
         home={false}
         img={props.data.defaultBcg.childImageSharp.fluid}
       ></StyledHero>
+      <Tours />
     </Layout>
   );
 };
