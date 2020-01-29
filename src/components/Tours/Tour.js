@@ -4,10 +4,25 @@ import Image from "gatsby-image";
 import styles from "../../css/tour.module.css";
 import { FaMap } from "react-icons/fa";
 import AniLink from "gatsby-plugin-transition-link/AniLink";
+import { useStaticQuery, graphql } from "gatsby";
+
+const getDefaultImage = graphql`
+  query {
+    file(relativePath: { eq: "defaultBcg.jpeg" }) {
+      childImageSharp {
+        fluid {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+  }
+`;
 
 const Tour = ({ tour }) => {
+  const data = useStaticQuery(getDefaultImage);
+  const defaultImg = data.file.childImageSharp.fluid;
   const { name, price, country, days, slug, images } = tour;
-  const mainImage = images[0].fluid;
+  const mainImage = images && images[0].fluid ? images[0].fluid : defaultImg;
 
   return (
     <article className={styles.tour}>
