@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import PropTypes from "prop-types";
-import { Link } from "gatsby";
+import AniLink from "gatsby-plugin-transition-link/AniLink";
 import navStyles from "../css/navbar.module.css";
 import { FaAlignRight } from "react-icons/fa";
 import links from "../constants/links";
@@ -35,7 +34,9 @@ const Navbar = props => {
           {links.map((item, index) => {
             return (
               <li key={index}>
-                <Link to={item.path}>{item.text}</Link>
+                <AniLink fade to={item.path}>
+                  {item.text}
+                </AniLink>
               </li>
             );
           })}
@@ -54,6 +55,6 @@ const Navbar = props => {
   );
 };
 
-Navbar.propTypes = {};
+// Navbar.propTypes = {};
 
 export default Navbar;

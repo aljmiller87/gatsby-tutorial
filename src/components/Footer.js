@@ -1,9 +1,9 @@
 import React from "react";
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 import styles from "../css/footer.module.css";
 import links from "../constants/links";
 import socialIcons from "../constants/social-icons";
-import { Link } from "gatsby";
+import AniLink from "gatsby-plugin-transition-link/AniLink";
 
 const Footer = props => {
   return (
@@ -11,9 +11,9 @@ const Footer = props => {
       <div className={styles.links}>
         {links.map((item, index) => {
           return (
-            <Link key={index} to={item.path}>
+            <AniLink fade key={index} to={item.path}>
               {item.text}
-            </Link>
+            </AniLink>
           );
         })}
       </div>
@@ -39,6 +39,6 @@ const Footer = props => {
   );
 };
 
-Footer.propTypes = {};
+// Footer.propTypes = {};
 
 export default Footer;

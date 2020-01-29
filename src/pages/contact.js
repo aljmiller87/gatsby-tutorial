@@ -1,11 +1,31 @@
 import React from "react";
-import PropTypes from "prop-types";
 import Layout from "../components/Layout";
+import StyledHero from "../components/StyledHero";
+import Contact from "../components/Contact/Contact";
+import { graphql } from "gatsby";
 
-const contact = props => {
-  return <Layout>AND THIS IS THE CONTACT PAGE</Layout>;
+const contact = ({ data }) => {
+  return (
+    <Layout>
+      <StyledHero
+        home={false}
+        img={data.contactBcg.childImageSharp.fluid}
+      ></StyledHero>
+      <Contact />
+    </Layout>
+  );
 };
 
-contact.propTypes = {};
+export const query = graphql`
+  query {
+    contactBcg: file(relativePath: { eq: "connectBcg.jpeg" }) {
+      childImageSharp {
+        fluid(quality: 90, maxWidth: 4160) {
+          ...GatsbyImageSharpFluid_withWebp
+        }
+      }
+    }
+  }
+`;
 
 export default contact;

@@ -1,16 +1,28 @@
 import React from "react";
-import PropTypes from "prop-types";
-import { Link } from "gatsby";
 import Layout from "../components/Layout";
-const blog = props => {
+import StyledHero from "../components/StyledHero";
+import { graphql } from "gatsby";
+
+const blog = ({ data }) => {
   return (
     <Layout>
-      Welcome to the blog page!!!
-      <Link to="/">Back home</Link>
+      <StyledHero
+        home={false}
+        img={data.blogBcg.childImageSharp.fluid}
+      ></StyledHero>
     </Layout>
   );
 };
 
-blog.propTypes = {};
-
+export const query = graphql`
+  query {
+    blogBcg: file(relativePath: { eq: "blogBcg.jpeg" }) {
+      childImageSharp {
+        fluid(quality: 90, maxWidth: 4160) {
+          src
+        }
+      }
+    }
+  }
+`;
 export default blog;
