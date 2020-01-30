@@ -9,8 +9,8 @@ import Title from "../components/Title";
 const BlogListTemplate = props => {
   const { data } = props;
   const { currentPage, numPages } = props.pageContext;
-  const arr = Array.from({ length: numPages });
-  console.log("arr", arr);
+  const pages = Array.from({ length: numPages });
+  const nextPage = currentPage + 1;
   return (
     <Layout>
       <section className={styles.blog}>
@@ -20,18 +20,33 @@ const BlogListTemplate = props => {
             return <BlogCard key={node.id} blog={node} />;
           })}
         </div>
-      </section>
-      <section className={styles.links}>
-        <AniLink fade to="/blogs" className={styles.link}>
-          1
-        </AniLink>
-        {Array.from({ length: numPages }).forEach((_, i) => {
-          return (
+        <div className={styles.links}>
+          {currentPage > 1 && (
             <AniLink fade to="/blogs" className={styles.link}>
-              1
+              prev
             </AniLink>
-          );
-        })}
+          )}
+          {pages.map((_, i) => {
+            return (
+              <AniLink
+                fade
+                to={`/blogs/${i === 0 ? "" : i + 1}`}
+                className={
+                  i + 1 === currentPage
+                    ? `${styles.link} ${styles.active}`
+                    : `${styles.link}`
+                }
+              >
+                {i + 1}
+              </AniLink>
+            );
+          })}
+          {nextPage <= numPages && (
+            <AniLink fade to={`/blogs/${nextPage}`} className={styles.link}>
+              next
+            </AniLink>
+          )}
+        </div>
       </section>
     </Layout>
   );

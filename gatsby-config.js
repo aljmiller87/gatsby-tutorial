@@ -15,8 +15,12 @@ module.exports = {
     description:
       "Explore awesome tours worldwide & discover what makes each of them unique. Forget your daily routine & say yes to adventure",
     author: "@alexmiller",
+    twitterUsername: "@Aljmiller87",
+    image: "/defaultBcg.jpeg",
+    siteUrl: "https://alex-miller-gatsby.netlify.com",
   },
   plugins: [
+    `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
