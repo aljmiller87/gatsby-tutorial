@@ -1,5 +1,8 @@
 import React, { useState } from "react";
-import AniLink from "gatsby-plugin-transition-link/AniLink";
+// import AniLink from "gatsby-plugin-transition-link/AniLink";
+import TransitionLink from "gatsby-plugin-transition-link";
+import TransitionWrapper from "./TransitionWrapper";
+
 import navStyles from "../css/navbar.module.css";
 import { FaAlignRight } from "react-icons/fa";
 import links from "../constants/links";
@@ -34,9 +37,7 @@ const Navbar = props => {
           {links.map((item, index) => {
             return (
               <li key={index}>
-                <AniLink fade to={item.path}>
-                  {item.text}
-                </AniLink>
+                <TransitionWrapper path={item.path} text={item.text} />
               </li>
             );
           })}

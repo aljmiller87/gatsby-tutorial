@@ -6,6 +6,7 @@ import styles from "../css/single-blog.module.css";
 import AniLink from "gatsby-plugin-transition-link/AniLink";
 import BlogCard from "../components/Blog/BlogCard";
 import blogCardStyles from "../css/blog-card.module.css";
+import SEO from "../components/SEO";
 
 const BlogTemplate = ({ data }) => {
   console.log("data", data);
@@ -68,6 +69,7 @@ const BlogTemplate = ({ data }) => {
 
   return (
     <Layout>
+      <SEO title={title} />
       <section className={styles.blog}>
         <div className={styles.center}>
           <h1>{title}</h1>
